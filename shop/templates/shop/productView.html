@@ -1,0 +1,62 @@
+{% extends 'shop/base.html' %}
+{% block title %} {{product.product_name}} {% endblock %}
+{% block css %}
+<style>
+.row {
+    margin-top: 10px;
+}
+
+.col-md-4 img {
+    width: 100%;
+    height: auto;
+}
+</style>
+{% endblock %}
+<!--  body part start -->
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <img src='/media/{{product.image}}' class="card-img-top" alt="...">
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3>{{product.product_name}}</h3>
+                    <b>RS. {{product.price}}</b>
+                    <p>{{product.desc}}</p>
+                </div>
+                <div class="col-md-4">
+                    <a href="/shop/checkout/" class="btn btn-danger btn-sm my-5">Order to Continue</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<!--  body part end -->
+{% block js %}
+<script>
+if (localStorage.getItem('cart') == null) {
+    var cart = {}
+} else {
+    cart = JSON.parse(localStorage.getItem('cart'));
+    document.getElementById('cart').innerHTML = Object.keys(cart).length;
+}
+
+$('.cart').click(function() {
+    var idstr = this.id.toString();
+    if (cart[idstr] != undefined) {
+        cart[idstr] += 1;
+    } else {
+        cart[idstr] = 1;
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    document.getElementById('cart').innerHTML = Object.keys(cart).length;
+});
+
+$('#popcart').popover()
+document.getElementById('popcart').setAttribute("data-content", "<h6>Cart for your items in my shopping cart</h6>");
+</script>
+{% endblock %}

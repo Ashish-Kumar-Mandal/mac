@@ -1,0 +1,58 @@
+{% extends 'shop/base.html' %}
+{% block title%} Payment Status{% endblock %}
+{% block css %}
+<style>
+table{
+    border: 1px solid #d2d2d2;
+}
+table tr td{
+    padding: 5px 15px;
+    border: 1px solid #ababab;
+}
+#msgs{
+    color: #00ff00;
+}
+#msgf{
+    color: #ff0000;
+}
+</style>
+{% endblock css %}
+{% block body %}
+<div class="container">
+    <div class="col my-4">
+        
+        <h2>Payment status regarding your order Id:<i> {{response.ORDERID}} </i></h2>
+        {% if response.RESPCODE == '01' %}
+        <b id="msgs">ORDER SUCCESS</b>
+        {% else %}
+        <b id="msgf">ORDER FAILURE</b>
+        {% endif%}
+        <hr>
+        <table>
+            <tr>
+                <td>ORDERID</td>
+                <td>{{response.ORDERID}}</td>
+            </tr>
+            <tr>
+                <td>TXNAMOUNT</td>
+                <td>{{response.TXNAMOUNT}}</td>
+            </tr>
+            <tr>
+                <td>STATUS</td>
+                <td>{{response.STATUS}}</td>
+            </tr>
+            <tr>
+                <td>BANKTXNID</td>
+                <td>{{response.BANKTXNID}}</td>
+            </tr>
+            <tr>
+                <td>RESPMSG</td>
+                <td>{{response.RESPMSG}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script></script>
+{% endblock %}

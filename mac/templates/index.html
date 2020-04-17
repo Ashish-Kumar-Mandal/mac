@@ -1,0 +1,17 @@
+<!--  body part start -->
+<script>window.location = '/shop/'</script>
+<!--  import bade templates file -->
+{% extends 'base.html' %}
+{% block title %} My Awesome Cart {% endblock %}
+<!--  body part start -->
+{% block body %}
+<div class="alert alert-success" role="alert">
+    <center>
+        <h4 class="alert-heading">Welcome to My Awesome Cart</h4>
+    </center>
+    <hr>
+    <a href="/shop"><button type="button" class="btn btn-primary btn-sm">Go To Shopping</button></a>
+    <a href="/blog"><button type="button" class="btn btn-secondary btn-sm" style="float: right;">Go To My Blog</button></a>
+</div>
+{% endblock %}
+<!--  body part end -->
